@@ -10,7 +10,7 @@
 
 <br />
 
-### Screeshot
+### Screenshot
 
 ![Music Player Desktop Demo](./readme-images/desktop.png "Desktop Demo")
 
