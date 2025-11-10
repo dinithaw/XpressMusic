@@ -152,9 +152,22 @@ body {
   background-repeat: no-repeat;
   background-position: top;
   overflow: overlay;
+  position: relative;
 }
 
 body.modalActive { overflow: hidden; }
+
+/* Gradient visualization canvas */
+.gradient-canvas {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  opacity: 0.4;
+  pointer-events: none;
+}
 
 ::-webkit-scrollbar { width: 8px; }
 
@@ -294,6 +307,16 @@ body:hover::-webkit-scrollbar-thumb { background-color: var(--surface-variant); 
   align-self: center;
   overflow: hidden;
   border-radius: var(--radius-24);
+  box-shadow: 0 8px 24px var(--black_a50);
+  position: relative;
+}
+
+.music-banner img {
+  transition: transform 0.3s ease;
+}
+
+.music-banner:hover img {
+  transform: scale(1.05);
 }
 
 .label-wrapper {
@@ -556,7 +579,7 @@ body:hover::-webkit-scrollbar-thumb { background-color: var(--surface-variant); 
    * TOP APP BAR
    */
 
-  .top-bar-actions { display: none; }
+  /* Keep top-bar-actions visible for upload and playlist buttons */
 
 
 
@@ -680,4 +703,89 @@ body:hover::-webkit-scrollbar-thumb { background-color: var(--surface-variant); 
 
   .music-list { gap: 28px; }
 
+}
+
+
+/*-----------------------------------*\
+  #TOAST NOTIFICATION
+\*-----------------------------------*/
+
+.toast {
+  position: fixed;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%) translateY(100px);
+  background-color: var(--surface-variant);
+  color: var(--on-background);
+  padding: 16px 24px;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px var(--black_a50);
+  opacity: 0;
+  transition: all 0.3s ease;
+  z-index: 1000;
+  max-width: 90%;
+  text-align: center;
+  font-size: 14px;
+}
+
+.toast.show {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+}
+
+.toast.success {
+  background-color: hsla(120, 60%, 40%, 0.95);
+  color: white;
+}
+
+.toast.error {
+  background-color: hsla(0, 60%, 50%, 0.95);
+  color: white;
+}
+
+
+/*-----------------------------------*\
+  #FLOATING UPLOAD BUTTON
+\*-----------------------------------*/
+
+.upload-floating-btn {
+  position: fixed;
+  bottom: 24px;
+  left: 24px;
+  z-index: 100;
+  background-color: var(--primary);
+  color: var(--on-primary);
+  box-shadow: 0 4px 12px var(--black_a50);
+  transition: all 0.3s ease;
+}
+
+.upload-floating-btn:hover {
+  background-color: var(--primary);
+  transform: scale(1.1);
+  box-shadow: 0 6px 16px var(--black_a50);
+}
+
+.upload-floating-btn:active {
+  transform: scale(0.95);
+}
+
+.upload-floating-btn .material-symbols-rounded {
+  color: var(--on-primary);
+}
+
+/* Adjust for mobile screens */
+@media (max-width: 768px) {
+  .upload-floating-btn {
+    bottom: 20px;
+    left: 20px;
+    width: 56px;
+    height: 56px;
+  }
+}
+
+/* Make sure it's above playlist */
+@media (min-width: 768px) {
+  .playlist {
+    z-index: 50;
+  }
 }

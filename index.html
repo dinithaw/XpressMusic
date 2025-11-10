@@ -36,9 +36,17 @@
   -->
   <link rel="stylesheet" href="./assets/css/style.css">
 
+  <!-- 
+    - jsmediatags for reading audio metadata
+  -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jsmediatags/3.9.5/jsmediatags.min.js"></script>
+
 </head>
 
 <body>
+
+  <!-- Gradient visualization background -->
+  <canvas id="gradientCanvas" class="gradient-canvas"></canvas>
 
   <!-- 
     - #TOP APP BAR
@@ -59,6 +67,17 @@
     </div>
 
   </div>
+
+  <!-- Hidden file input for uploading music -->
+  <input type="file" id="musicFileInput" accept="audio/*" multiple style="display: none;">
+
+  <!-- Floating upload button -->
+  <button class="btn-icon upload-floating-btn" data-upload-btn title="Upload Music Files">
+    <span class="material-symbols-rounded">upload_file</span>
+  </button>
+
+  <!-- Toast notification for upload feedback -->
+  <div id="toast" class="toast"></div>
 
 
 
